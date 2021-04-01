@@ -12,7 +12,8 @@ import PlayerTabPrefabComponent from './playerTabPrefab';
 import ClanTabPrefabComponent from './clanTabPrefab';
 import PartyTabPrefabComponent from './partyTabPrefab';
 import WorldInfoPrefabComponent from './worldInfoPrefab';
-import { Battle } from '../../basic/battle';
+import { Battle, IAttackResult } from '../../basic/battle';
+import { GlobalEvent } from '../../libs/events';
 
 @ccclass
 export default class GameActionPrefabComponent extends cc.Component {
@@ -85,12 +86,23 @@ export default class GameActionPrefabComponent extends cc.Component {
     }
 
     clickAttackEnemy() {
-        let attackResult = this.battle.playerClickAttack();
-        this.enemyTabPrefebComponent.onAttacked(attackResult)
+        let attackResults = this.battle.playerClickAttack();
+        this.enemyTabPrefebComponent.onAttacked(attackResults)
+    }
+
+    playerAttack(attackResults : IAttackResult[]) {
+        this.enemyTabPrefebComponent.onAttacked(attackResults);
+    }
+
+    enemyAttack(attackResults : IAttackResult[]) {
+        this.playerTabPrefebComponent.onAttacked(attackResults)
     }
 
     setInteractivation() {
         let interactivation = Map.getCurrentStatus();
+        GlobalEvent.off('playerAttack')
+        GlobalEvent.off('enemyAttack')
+		GlobalEvent.off('enemyEliminated');
         if (interactivation.type == 'enemy') {
             this.enemyTabPrefabNode = cc.instantiate(this.enemyTabPrefab)
             this.node.addChild(this.enemyTabPrefabNode)
@@ -98,6 +110,9 @@ export default class GameActionPrefabComponent extends cc.Component {
             this.enemyTabPrefebComponent.gameActionPrefabComponent = this;
             this.enemyTabPrefebComponent.setEnemy(interactivation.info);
             this.battle = new Battle(interactivation.info)
+            GlobalEvent.on('enemyEliminated', this.setInteractivation.bind(this))
+            GlobalEvent.on('playerAttack', this.playerAttack.bind(this))
+            GlobalEvent.on('enemyAttack', this.enemyAttack.bind(this))
         }
     }
 

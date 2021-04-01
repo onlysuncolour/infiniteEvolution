@@ -71,4 +71,4 @@ class Events {
 
 }
 
-export const globalEvent = new Events();
+export const GlobalEvent = new Events();

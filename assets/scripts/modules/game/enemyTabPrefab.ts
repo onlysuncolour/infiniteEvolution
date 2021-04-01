@@ -7,6 +7,7 @@
 
 import { IAttackResult } from "../../basic/battle";
 import { Enemy } from "../../basic/enemy";
+import { GlobalEvent } from "../../libs/events";
 import GameActionPrefabComponent from './gameActionPrefab'
 const {ccclass, property} = cc._decorator;
 
@@ -44,9 +45,9 @@ export default class EnemyTabPrefab extends cc.Component {
         this.enemyHPLabelNode.string = `${this.enemy.currentHp}/${this.enemy.hp}`
     }
 
-    onAttacked(attackResult : IAttackResult[]) {
+    onAttacked(attackResults : IAttackResult[]) {
         let damage = 0;
-        attackResult.forEach(r => damage+=r.damageResult);
+        attackResults.forEach(r => damage+=r.damageResult);
         var damageLabelNode = cc.instantiate(this.enemyHPLostLabelPrefab);
         this.node.addChild(damageLabelNode)
         damageLabelNode.setPosition(this.calcDamageLabelNodePosition(damageLabelNode))
@@ -84,9 +85,6 @@ export default class EnemyTabPrefab extends cc.Component {
     }
 
     // LIFE-CYCLE CALLBACKS:
-
-    onLoad () {
-    }
 
     start () {
 

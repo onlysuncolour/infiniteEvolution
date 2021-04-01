@@ -3,6 +3,7 @@ import { Enemy } from "./enemy";
 import { Equipment } from "./equipment";
 import { Player } from "./player";
 import { Skill } from "./skill";
+import { GlobalEvent } from "../libs/events";
 // import {Environment} from 
 
 export interface IAttackInfo {
@@ -26,81 +27,126 @@ export class Battle {
     private _enemySkills: Skill[];
     private _enemyItems: string[];
     private _enemyEquipment: Equipment[];
+	private _enemyAttackTimeInterval: number;
+	private _enemyAttackTimeOutFunc: ReturnType<typeof setTimeout>;
     private _playerSkills: Skill[];
     private _playerEquipment: Equipment[];
     private _playerItems: string[];
+	private _playerAttackTimeInterval: number;
+	private _playerAttackTimeOutFunc: ReturnType<typeof setTimeout>;
+	private _battleStatus : string;
 
-    get player() {
-      return this._player
-    }
-    
-    set player(val: Player) {
-      this._player = val
-    }
-    
-    get enemy() {
-      return this._enemy
-    }
-    
-    set enemy(val: Enemy) {
-      this._enemy = val
-    }
-    
-    get environment() {
-      return this._environment
-    }
-    
-    set environment(val: object) {
-      this._environment = val
-    }
-    
-    get enemySkills() {
-      return this._enemySkills
-    }
-    
-    set enemySkills(val: Skill[]) {
-      this._enemySkills = val
-    }
-    
-    get enemyItems() {
-      return this._enemyItems
-    }
-    
-    set enemyItems(val: string[]) {
-      this._enemyItems = val
-    }
-    
-    get enemyEquipment() {
-      return this._enemyEquipment
-    }
-    
-    set enemyEquipment(val: Equipment[]) {
-      this._enemyEquipment = val
-    }
-    
-    get playerSkills() {
-      return this._playerSkills
-    }
-    
-    set playerSkills(val: Skill[]) {
-      this._playerSkills = val
-    }
-    
-    get playerEquipment() {
-      return this._playerEquipment
-    }
-    
-    set playerEquipment(val: Equipment[]) {
-      this._playerEquipment = val
-    }
-    
-    get playerItems() {
-      return this._playerItems
-    }
-    
-    set playerItems(val: string[]) {
-      this._playerItems = val
-    }
+	get player() {
+	  return this._player
+	}
+	
+	set player(val: Player) {
+	  this._player = val
+	}
+	
+	get enemy() {
+	  return this._enemy
+	}
+	
+	set enemy(val: Enemy) {
+	  this._enemy = val
+	}
+	
+	get environment() {
+	  return this._environment
+	}
+	
+	set environment(val: object) {
+	  this._environment = val
+	}
+	
+	get enemySkills() {
+	  return this._enemySkills
+	}
+	
+	set enemySkills(val: Skill[]) {
+	  this._enemySkills = val
+	}
+	
+	get enemyItems() {
+	  return this._enemyItems
+	}
+	
+	set enemyItems(val: string[]) {
+	  this._enemyItems = val
+	}
+	
+	get enemyEquipment() {
+	  return this._enemyEquipment
+	}
+	
+	set enemyEquipment(val: Equipment[]) {
+	  this._enemyEquipment = val
+	}
+	
+	get enemyAttackTimeInterval() {
+	  return this._enemyAttackTimeInterval
+	}
+	
+	set enemyAttackTimeInterval(val: number) {
+	  this._enemyAttackTimeInterval = val
+	}
+	
+	get enemyAttackTimeOutFunc() {
+	  return this._enemyAttackTimeOutFunc
+	}
+	
+	set enemyAttackTimeOutFunc(val: ReturnType<typeof setTimeout>) {
+	  this._enemyAttackTimeOutFunc = val
+	}
+	
+	get playerSkills() {
+	  return this._playerSkills
+	}
+	
+	set playerSkills(val: Skill[]) {
+	  this._playerSkills = val
+	}
+	
+	get playerEquipment() {
+	  return this._playerEquipment
+	}
+	
+	set playerEquipment(val: Equipment[]) {
+	  this._playerEquipment = val
+	}
+	
+	get playerItems() {
+	  return this._playerItems
+	}
+	
+	set playerItems(val: string[]) {
+	  this._playerItems = val
+	}
+	
+	get playerAttackTimeInterval() {
+	  return this._playerAttackTimeInterval
+	}
+	
+	set playerAttackTimeInterval(val: number) {
+	  this._playerAttackTimeInterval = val
+	}
+	
+	get playerAttackTimeOutFunc() {
+	  return this._playerAttackTimeOutFunc
+	}
+	
+	set playerAttackTimeOutFunc(val: ReturnType<typeof setTimeout>) {
+	  this._playerAttackTimeOutFunc = val
+	}
+
+	get battleStatus() {
+	  return this._battleStatus
+	}
+	
+	set battleStatus(val: string) {
+	  this._battleStatus = val
+	}
 
     /**
      *
@@ -114,15 +160,49 @@ export class Battle {
         this.enemySkills = Skill.buildSkillsById(this.enemy.skills)
         this.playerSkills = Skill.buildSkillsById(this.player.skills)
 
+		this.playerAttackTimeInterval = 1000;
+		this.enemyAttackTimeInterval = 1000;
+
+		this.battleStatus = 'running';
+
+        this.runAutoAttack()
+    }
+
+    runAutoAttack():void {
+		let _this = this;
+		let runPlayerAutoAttack = () => {
+			if (_this.battleStatus == 'finished') {
+				return;
+			}
+			_this.playerAttackTimeOutFunc = setTimeout( _ => {
+				_this.playerAttack();
+				runPlayerAutoAttack();
+			}, _this.playerAttackTimeInterval)
+		}
+		let runEnemyAutoAttack = () => {
+			if (_this.battleStatus == 'finished') {
+				return;
+			}
+			_this.enemyAttackTimeOutFunc = setTimeout( _ => {
+				_this.enemyAttack();
+				runEnemyAutoAttack();
+			}, _this.enemyAttackTimeInterval)
+		}
+		runPlayerAutoAttack();
+		runEnemyAutoAttack();
     }
     
-    public playerAttack() : IAttackResult[] {
+    public playerAttack() {
         const source = false;
         let attackInfos = this.getAttackInfo(source);
-        return this.damageCalc(attackInfos)
+		const attackResults:IAttackResult[] = this.damageCalc(attackInfos)
+		GlobalEvent.emit('playerAttack', attackResults )
     }
 
     public playerClickAttack() : IAttackResult[] {
+		if (this.battleStatus == 'finished') {
+			return [];
+		}
         return this.damageCalc( [
             {
                 damage: this.player.attack, 
@@ -132,10 +212,11 @@ export class Battle {
         ])
     }
     
-    public enemyAttack() : IAttackResult[] {
+    public enemyAttack(){
         const source = true
         let attackInfos = this.getAttackInfo(source);
-        return this.damageCalc(attackInfos)
+		const attackResults:IAttackResult[] = this.damageCalc(attackInfos)
+		GlobalEvent.emit('enemyAttack', attackResults )
     }
 
     public itemUse() {
@@ -147,25 +228,25 @@ export class Battle {
     }
 
     private weaponAttack(source: boolean) : IAttackInfo[] {
-        const sourceO = this.getSourceInfo(source).sourceO
+        const unit = this.getUnitInfo(source).unit
         return [{
-            damage: sourceO.attack,
+            damage: unit.attack,
             damageType: 'normal',
             target: !source
         }]
     }
 
     private skillAttack(source: boolean) : IAttackInfo[] {
-        const sourceInfo = this.getSourceInfo(source)
-        let skill:Skill = Skill.skillChoose(sourceInfo.skills, sourceInfo.sourceO);
-        let skillAttackInfos:IAttackInfo[] = Skill.calcDamages(skill, source, sourceInfo.sourceO)
+        const sourceInfo = this.getUnitInfo(source)
+        let skill:Skill = Skill.skillChoose(sourceInfo.skills, sourceInfo.unit);
+        let skillAttackInfos:IAttackInfo[] = Skill.calcDamages(skill, source, sourceInfo.unit)
         return skillAttackInfos
     }
 
     private normalAttack(source: boolean) : IAttackInfo[] {
-        const sourceO = this.getSourceInfo(source).sourceO
+        const unit = this.getUnitInfo(source).unit
         return [{
-            damage: sourceO.attack,
+            damage: unit.attack,
             damageType: 'normal',
             target: !source
         }]
@@ -174,16 +255,16 @@ export class Battle {
     private damageCalc(attackInfos: IAttackInfo[]) : IAttackResult[]{
         let result : IAttackResult[] = [];
         attackInfos.forEach(info => {
-            let targetInfo = this.getSourceInfo(info.target);
-            let sourceInfo = this.getSourceInfo(!info.target)
+            let targetInfo = this.getUnitInfo(info.target);
+            let sourceInfo = this.getUnitInfo(!info.target)
             let damageResult : number = 0;
             if (info.damageType == 'normal') {
                 damageResult = Math.ceil(
                     info.damage * 
-                    (sourceInfo.sourceO.attack / 
-                        (sourceInfo.sourceO.attack + targetInfo.sourceO.attack)
+                    (sourceInfo.unit.attack / 
+                        (sourceInfo.unit.attack + targetInfo.unit.attack)
                 ))
-                targetInfo.sourceO.currentHp -= damageResult;
+                targetInfo.unit.currentHp -= damageResult;
             }
             result.push({
                 damageResult,
@@ -191,6 +272,9 @@ export class Battle {
                 target: info.target
             })
         })
+		if (this.enemy.currentHp <= 0) {
+			this.enemyEliminated();
+		}
         return result;
     }
 
@@ -199,7 +283,7 @@ export class Battle {
         // default 30% skill attack
         // then if weapon, weapon attack
         let attackInfos : IAttackInfo[];
-        let sourceInfo = this.getSourceInfo(source);
+        let sourceInfo = this.getUnitInfo(source);
         let rate = Math.random();
         if (rate < 0.3 && sourceInfo.skills.length > 0) {
             attackInfos = this.skillAttack(source)
@@ -213,21 +297,21 @@ export class Battle {
         return attackInfos;
     }
 
-    private getSourceInfo(source: boolean) : {skills : Skill[], equipments: Equipment[], sourceO: Player | Enemy, weaponAvailable: boolean} {
+    private getUnitInfo(unitCode: boolean) : {skills : Skill[], equipments: Equipment[], unit: Player | Enemy, weaponAvailable: boolean} {
         let skills : Skill[] = this.playerSkills, 
             equipments: Equipment[] = this.playerEquipment,
-            sourceO: Player | Enemy = this.player,
+            unit: Player | Enemy = this.player,
             weaponAvailable: boolean;
-        if (source) {
+        if (unitCode) {
             skills = this.enemySkills;
             equipments = this.enemyEquipment,
-            sourceO = this.enemy;
+            unit = this.enemy;
         }
         weaponAvailable = Battle.checkWeaponAvailable(equipments)
         return {
             skills,
             equipments,
-            sourceO,
+            unit,
             weaponAvailable
         }
     }
@@ -241,11 +325,22 @@ export class Battle {
     }
 
     private enemyEliminated() {
-
+		GlobalEvent.emit('enemyEliminated', { enemy: this.enemy });
+		this.destroy()
     }
+
+	private destroy() {
+		clearTimeout(this.enemyAttackTimeOutFunc);
+		clearTimeout(this.playerAttackTimeOutFunc);
+		for (const key in this) {
+			if (Object.prototype.hasOwnProperty.call(this, key)) {
+				this[key] = null
+			}
+		}
+		this.battleStatus = 'finished'
+	}
 
     static checkWeaponAvailable (equipments: Equipment[]) : boolean {
         return true
     }
-    
 }

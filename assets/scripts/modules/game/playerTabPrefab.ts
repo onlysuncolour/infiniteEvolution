@@ -5,6 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import { IAttackResult } from "../../basic/battle";
 import GameActionPrefabComponent from "./gameActionPrefab";
 
 const {ccclass, property} = cc._decorator;
@@ -20,12 +21,16 @@ export default class PlayerTabPrefabComponent extends cc.Component {
     
     gameActionPrefabComponent: GameActionPrefabComponent = null;
 
+    onAttacked(attackResults : IAttackResult[]) {
+
+    }
+
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}
 
     start () {
-        
+
     }
 
     // update (dt) {}
