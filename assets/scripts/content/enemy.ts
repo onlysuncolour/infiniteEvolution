@@ -1,0 +1,110 @@
+export default [
+    {
+        "id": 0,
+        "name": "持斧巨魔",
+        "hp": 100,
+        "attack": 10,
+        "strength": 10,
+        "skills": [1],
+        "atlas": "mon",
+        "drops": [1],
+        "dropRate": 0.2,
+        "texture": "mon1"
+    },
+    {
+        "id": 1,
+        "name": "持剑巨魔",
+        "hp": 100,
+        "attack": 10,
+        "strength": 10,
+        "skills": [0],
+        "atlas": "mon",
+        "drops": [1],
+        "dropRate": 0.2,
+        "texture": "mon2"
+    },
+    {
+        "id": 2,
+        "name": "矮人",
+        "hp": 100,
+        "attack": 10,
+        "strength": 10,
+        "skills": [0],
+        "atlas": "mon",
+        "drops": [1],
+        "dropRate": 0.2,
+        "texture": "mon3"
+    },
+    {
+        "id": 3,
+        "name": "双剑巨魔",
+        "hp": 100,
+        "attack": 10,
+        "strength": 10,
+        "skills": [2],
+        "atlas": "mon",
+        "drops": [1],
+        "dropRate": 0.2,
+        "texture": "mon4"
+    },
+    {
+        "id": 4,
+        "name": "持锤巨魔",
+        "hp": 100,
+        "attack": 10,
+        "strength": 10,
+        "skills": [2],
+        "atlas": "mon",
+        "drops": [1],
+        "dropRate": 0.2,
+        "texture": "mon5"
+    },
+    {
+        "id": 5,
+        "name": "木槌羊角魔",
+        "hp": 100,
+        "attack": 10,
+        "strength": 10,
+        "skills": [0],
+        "atlas": "mon",
+        "drops": [1],
+        "dropRate": 0.2,
+        "texture": "mon6"
+    },
+    {
+        "id": 6,
+        "name": "石锤高等巨魔",
+        "hp": 100,
+        "attack": 10,
+        "strength": 10,
+        "skills": [1],
+        "atlas": "mon",
+        "drops": [1],
+        "dropRate": 0.2,
+        "texture": "mon7"
+    },
+    {
+        "id": 7,
+        "name": "巨剑萨满",
+        "hp": 100,
+        "attack": 10,
+        "strength": 10,
+        "skills": [0],
+        "atlas": "mon",
+        "drops": [1],
+        "dropRate": 0.2,
+        "texture": "mon8"
+    },
+    {
+        "id": 8,
+        "name": "矮人队长",
+        "hp": 100,
+        "attack": 10,
+        "strength": 10,
+        "skills": [1],
+        "atlas": "mon",
+        "drops": [1],
+        "dropRate": 0.2,
+        "texture": "mon9"
+    }
+]

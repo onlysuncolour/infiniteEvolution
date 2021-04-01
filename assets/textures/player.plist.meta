@@ -1,0 +1,34 @@
+{
+  "ver": "1.2.4",
+  "uuid": "d36fa69c-1f70-4a96-864b-60732dc0abc1",
+  "rawTextureUuid": "57dc3af2-e42a-4401-91e6-0e9cad59770b",
+  "size": {
+    "width": 539,
+    "height": 770
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "player1.png": {
+      "ver": "1.0.4",
+      "uuid": "99ac6293-a67c-438f-af3d-3e5edf9244e8",
+      "rawTextureUuid": "57dc3af2-e42a-4401-91e6-0e9cad59770b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 2,
+      "trimX": 1,
+      "trimY": 1,
+      "width": 537,
+      "height": 768,
+      "rawWidth": 537,
+      "rawHeight": 772,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}
