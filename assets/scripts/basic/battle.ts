@@ -275,6 +275,8 @@ export class Battle {
         })
 		if (this.enemy.currentHp <= 0) {
 			this.enemyEliminated();
+		} else if (this.player.currentHp <= 0) {
+			this.playerEliminated()
 		}
         return result;
     }
@@ -329,6 +331,11 @@ export class Battle {
 		GlobalEvent.emit('enemyEliminated', { enemy: this.enemy });
 		this.destroy()
     }
+
+	private playerEliminated() {
+		GlobalEvent.emit('playerEliminated');
+		this.destroy()
+	}
 
 	private destroy() {
 		clearTimeout(this.enemyAttackTimeOutFunc);

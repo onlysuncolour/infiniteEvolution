@@ -8,7 +8,7 @@ export interface IMapInteractivation {
 export interface IMapSave {
     [propName: string]: any;
 }
-export class Map {
+export class MapData {
     public Save: IMapSave = {};
     public currentMapInteractivation: IMapInteractivation;
 
@@ -32,4 +32,4 @@ export class Map {
     }
 }
 
-export const GlobalMap = new Map();
+export const GlobalMap = new MapData();

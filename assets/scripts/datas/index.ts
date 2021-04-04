@@ -1,5 +1,5 @@
 import Item from './item'
-import {Map} from './map'
+import {GlobalMap} from './map'
 import research from './research'
 import Timer from './timer'
 import {User} from './user'

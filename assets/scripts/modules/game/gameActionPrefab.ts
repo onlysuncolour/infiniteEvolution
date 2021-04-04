@@ -7,7 +7,7 @@
 
 const {ccclass, property} = cc._decorator;
 import EnemyTabPrefebComponent from './enemyTabPrefab'
-import {GlobalMap, IMapInteractivation, Map} from '../../datas/map';
+import {GlobalMap, IMapInteractivation} from '../../datas/map';
 import PlayerTabPrefabComponent from './playerTabPrefab';
 import ClanTabPrefabComponent from './clanTabPrefab';
 import PartyTabPrefabComponent from './partyTabPrefab';

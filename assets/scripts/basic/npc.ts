@@ -1,4 +1,6 @@
-class npc {
+import Basic from "./basic";
+
+export class NPC extends Basic {
 
     public name: String;
 
@@ -12,8 +14,8 @@ class npc {
 
     public items: Array<NPCItem>;
 
-    constructor() {
-
+    constructor(data) {
+        super(data)
     }
 
     loadData() {

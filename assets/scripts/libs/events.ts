@@ -51,7 +51,7 @@ class Events {
         }).filter(i => i > -1).reverse().forEach(i => event.callbacks.splice(i, 1))
     };
 
-    public emit (eventName: string, params: any, target?: any): void {
+    public emit (eventName: string, params?: any, target?: any): void {
         let event = this.getEvent(eventName);
         if (!event) {
             return
