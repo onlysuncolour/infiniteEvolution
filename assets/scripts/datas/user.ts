@@ -18,7 +18,7 @@ export const User = {
             player: Player.initPlayer({
                 hp: 100,
                 attack: 10,
-                skills: [],
+                skills: [0,1,2],
                 defense: 10
             })
         }

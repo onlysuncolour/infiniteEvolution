@@ -7,7 +7,7 @@
 
 const {ccclass, property} = cc._decorator;
 import EnemyTabPrefebComponent from './enemyTabPrefab'
-import {Map} from '../../datas/map';
+import {GlobalMap, IMapInteractivation, Map} from '../../datas/map';
 import PlayerTabPrefabComponent from './playerTabPrefab';
 import ClanTabPrefabComponent from './clanTabPrefab';
 import PartyTabPrefabComponent from './partyTabPrefab';
@@ -59,10 +59,13 @@ export default class GameActionPrefabComponent extends cc.Component {
 
     battle: Battle = null;
 
+    mapInteractivation: IMapInteractivation;
+
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        this.setInteractivation()
+        this.mapInteractivation = GlobalMap.getNextMapInteractivation();
+        this.runInteractivation()
         
         this.playerTabPrefabNode = cc.instantiate(this.playerTabPrefab)
         this.node.addChild(this.playerTabPrefabNode)
@@ -98,21 +101,44 @@ export default class GameActionPrefabComponent extends cc.Component {
         this.playerTabPrefebComponent.onAttacked(attackResults)
     }
 
-    setInteractivation() {
-        let interactivation = Map.getCurrentStatus();
-        GlobalEvent.off('playerAttack')
-        GlobalEvent.off('enemyAttack')
-		GlobalEvent.off('enemyEliminated');
-        if (interactivation.type == 'enemy') {
+    runInteractivation() {
+        this.destroyInteractivation()
+        if (this.mapInteractivation.type == 'enemy') {
             this.enemyTabPrefabNode = cc.instantiate(this.enemyTabPrefab)
             this.node.addChild(this.enemyTabPrefabNode)
             this.enemyTabPrefebComponent = this.enemyTabPrefabNode.getComponent('enemyTabPrefab');
             this.enemyTabPrefebComponent.gameActionPrefabComponent = this;
-            this.enemyTabPrefebComponent.setEnemy(interactivation.info);
-            this.battle = new Battle(interactivation.info)
-            GlobalEvent.on('enemyEliminated', this.setInteractivation.bind(this))
+            this.enemyTabPrefebComponent.setEnemy(this.mapInteractivation.info);
+            this.battle = new Battle(this.mapInteractivation.info)
+            GlobalEvent.on('enemyEliminated', this.enemyEliminated.bind(this))
+            GlobalEvent.on('playerEliminated', this.playerEliminated.bind(this))
             GlobalEvent.on('playerAttack', this.playerAttack.bind(this))
             GlobalEvent.on('enemyAttack', this.enemyAttack.bind(this))
+        }
+    }
+
+    destroyInteractivation() {
+        GlobalEvent.off('playerAttack')
+        GlobalEvent.off('enemyAttack')
+		GlobalEvent.off('enemyEliminated');
+		GlobalEvent.off('playerEliminated');
+        if (this.enemyTabPrefabNode) {
+            this.enemyTabPrefabNode.destroyAllChildren()
+            this.enemyTabPrefabNode.destroy();
+            this.enemyTabPrefabNode = null;
+            this.enemyTabPrefebComponent = null;
+        }
+    }
+
+    enemyEliminated() {
+        this.mapInteractivation = GlobalMap.getNextMapInteractivation();
+        this.runInteractivation();
+    }
+
+    playerEliminated() {
+        if (this.mapInteractivation.type == 'enemy') {
+            GlobalMap.resetEnemy();
+            this.runInteractivation()
         }
     }
 

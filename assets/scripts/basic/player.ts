@@ -62,6 +62,7 @@ export class Player extends Basic {
      */
     constructor(data) {
         super(data);
+        this.currentHp = this.hp;
     }
 
     static initPlayer(data) : Player {

@@ -154,6 +154,7 @@ export class Battle {
     constructor(enemy: Enemy, environment?: object) {
         // super();
         this.player = loadPlayer();
+		this.player.currentHp = this.player.hp;
         this.enemy = enemy;
         this.environment = environment;
 
