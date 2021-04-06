@@ -13,6 +13,7 @@ export class World extends Basic {
     public worldEvents: WorldEvent[];
     public npcs: NPC[];
     public enemies: Enemy[];
+    public currentMap: Map;
 
     
 }
