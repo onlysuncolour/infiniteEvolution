@@ -1,31 +1,34 @@
+import { EDamageType, EEquipmentLevel, EEquipmentType } from './enums';
 import Item from './item'
 
 export interface IEquipmentOtherDamage {
     value: number;
-    type: string;
+    type: EDamageType;
     status?: string;
 }
 export interface IEquipmentOtherDefense {
     value: number;
-    type: string;
+    type: EDamageType;
     status?: string;
 }
 
 export interface IEquipmentDefenseIgnore {
     value: number;
-    type: string;
+    type: EDamageType;
 }
 
 export class Equipment extends Item {
-    type: string;
+    type: EEquipmentType;
 
+    level: EEquipmentLevel;
+    
     damage: number; // 伤害值
-    damageType: string; // 伤害类型
+    damageType: EDamageType; // 伤害类型
     status: string;
     otherDamages: IEquipmentOtherDamage[]; // 其他伤害
     
     defense?: number; // 防御值
-    defenseType?: number; // 防御类型
+    defenseType?: EDamageType; // 防御类型
     otherDefenses: IEquipmentOtherDefense[]; // 其他防御
 
     hitRatio?: number; // 命中率

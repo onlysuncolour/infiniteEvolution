@@ -43,8 +43,24 @@ export enum EEquipmentType {
     brooch = 20, // 胸针
 }
 
+export enum EEquipmentLevel {
+    U = 0, // 独一无二的
+    SSS = 1,
+    SS = 2,
+    S = 3, // S级
+    AA = 4,
+    A = 5, // A级
+    BB = 6,
+    B = 7, // B级装备
+    CC = 8,
+    C = 9, // C级装备
+    DD = 10,
+    D = 11, // D级装备
+    O = 12, // 随手可得 
+}
+
 export enum EDamageType {
-    normal = 0,
+    physical = 0,
     magic = 1,
     heal = 2,
     buff = 3,

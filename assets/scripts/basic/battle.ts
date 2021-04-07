@@ -4,18 +4,19 @@ import { Equipment } from "./equipment";
 import { Player } from "./player";
 import { Skill } from "./skill";
 import { GlobalEvent } from "../libs/events";
+import { EDamageType } from "./enums";
 // import {Environment} from 
 
 export interface IAttackInfo {
     damage: number,
-    damageType: string,
+    damageType: EDamageType,
     buff?: string,
     target: boolean, // true enemy, false player
 }
 
 export interface IAttackResult {
     damageResult : number;
-    damageType: string;
+    damageType: EDamageType;
     buff? : string,
     target: boolean,
 }
@@ -207,7 +208,7 @@ export class Battle {
         return this.damageCalc( [
             {
                 damage: this.player.attack, 
-                damageType: 'normal', 
+                damageType: EDamageType.physical, 
                 target: true
             }
         ])
@@ -232,7 +233,7 @@ export class Battle {
         const unit = this.getUnitInfo(source).unit
         return [{
             damage: unit.attack,
-            damageType: 'normal',
+            damageType: EDamageType.physical,
             target: !source
         }]
     }
@@ -248,7 +249,7 @@ export class Battle {
         const unit = this.getUnitInfo(source).unit
         return [{
             damage: unit.attack,
-            damageType: 'normal',
+            damageType: EDamageType.physical,
             target: !source
         }]
     }
@@ -259,7 +260,7 @@ export class Battle {
             let targetInfo = this.getUnitInfo(info.target);
             let sourceInfo = this.getUnitInfo(!info.target)
             let damageResult : number = 0;
-            if (info.damageType == 'normal') {
+            if (info.damageType == EDamageType.physical) {
                 damageResult = Math.ceil(
                     info.damage * 
                     (sourceInfo.unit.attack / 
