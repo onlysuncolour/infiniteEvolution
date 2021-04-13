@@ -5,6 +5,10 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import GameActionPrefabComponent from "./gameActionPrefab";
+import TaskTabPrefabComponent from "./taskTabPrefab";
+import BackpackPrefabComponent from "./backpackPrefab"
+import MenuPrefabComponent from "./menuPrefab";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -19,24 +23,35 @@ export default class GameComponent extends cc.Component {
     @property(cc.Prefab)
     gameActionPrefab: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    backpackPrefab: cc.Prefab = null;
+
     menuNode: cc.Node = null;
     taskTabNode: cc.Node = null;
     gameActionNode: cc.Node = null;
+    backpackNode: cc.Node = null;
 
+    menuPrefabComponent: MenuPrefabComponent = null;
+    taskTabPrefabComponent: TaskTabPrefabComponent = null;
+    gameActionPrefabComponent: GameActionPrefabComponent = null;
+    backpackPrefabComponent: BackpackPrefabComponent = null
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         this.menuNode = cc.instantiate(this.menuPrefab)
         this.node.addChild(this.menuNode)
-        this.menuNode.getComponent('menuPrefab').gameComponent = this;
+        this.menuPrefabComponent = this.menuNode.getComponent('menuPrefab')
+        this.menuPrefabComponent.gameComponent = this;
 
         this.taskTabNode = cc.instantiate(this.taskTabPrefab)
         this.node.addChild(this.taskTabNode);
-        this.taskTabNode.getComponent('taskTabPrefab').gameComponent = this;
+        this.taskTabPrefabComponent = this.taskTabNode.getComponent('taskTabPrefab')
+        this.taskTabPrefabComponent.gameComponent = this;
         
         this.gameActionNode = cc.instantiate(this.gameActionPrefab)
         this.node.addChild(this.gameActionNode);
-        this.gameActionNode.getComponent('gameActionPrefab').gameComponent = this;
+        this.gameActionPrefabComponent = this.gameActionNode.getComponent('gameActionPrefab')
+        this.gameActionPrefabComponent.gameComponent = this;
     }
 
     start () {

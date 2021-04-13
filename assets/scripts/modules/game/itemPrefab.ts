@@ -6,27 +6,16 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const {ccclass, property} = cc._decorator;
-import GameComponent from './game'
 
 @ccclass
-export default class MenuPrefabComponent extends cc.Component {
-    
-    @property(cc.Button)
-    userBtn: cc.Button = null;
+export default class NewClass extends cc.Component {
 
-    @property(cc.Button)
-    bagBtn: cc.Button = null;
-    
-    @property(cc.Button)
-    partnerBtn: cc.Button = null;
+    @property(cc.Label)
+    label: cc.Label = null;
 
-    @property(cc.Button)
-    watchBtn: cc.Button = null;
+    @property
+    text: string = 'hello';
 
-    @property(cc.Button)
-    socialBtn: cc.Button = null;
-
-    gameComponent: GameComponent;
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}

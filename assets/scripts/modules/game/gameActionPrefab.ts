@@ -14,6 +14,7 @@ import PartyTabPrefabComponent from './partyTabPrefab';
 import WorldInfoPrefabComponent from './worldInfoPrefab';
 import { Battle, IAttackResult } from '../../basic/battle';
 import { GlobalEvent } from '../../libs/events';
+import GameComponent from './game';
 
 @ccclass
 export default class GameActionPrefabComponent extends cc.Component {
@@ -56,6 +57,8 @@ export default class GameActionPrefabComponent extends cc.Component {
     clanTabPrefebComponent: ClanTabPrefabComponent = null;
     partyTabPrefebComponent: PartyTabPrefabComponent = null;
     worldInfoPrefebComponent: WorldInfoPrefabComponent = null;
+
+    gameComponent: GameComponent = null;
 
     battle: Battle = null;
 
