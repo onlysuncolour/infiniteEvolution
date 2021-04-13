@@ -5,20 +5,28 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import item from "../../basic/item";
+import BackpackPrefabComponent from "./backpackPrefab";
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class ItemPrefabComponent extends cc.Component {
 
-    @property(cc.Label)
-    label: cc.Label = null;
+    @property(cc.Sprite)
+    itemSprite: cc.Sprite = null;
 
-    @property
-    text: string = 'hello';
+    @property(cc.SpriteAtlas)
+    itemSpriteAtlas: cc.SpriteAtlas = null;
 
+    item: item = null;
+
+    backpackPrefabComponent: BackpackPrefabComponent;
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {}
+    onLoad () {
+        this.itemSprite.spriteFrame = this.itemSpriteAtlas.getSpriteFrame(this.item.texture)
+    }
 
     start () {
 

@@ -1,0 +1,34 @@
+{
+  "ver": "1.2.4",
+  "uuid": "d3aca239-4abe-4bc6-a3b4-cab3224718c3",
+  "rawTextureUuid": "89433c70-3951-4521-9a0f-f9b783906715",
+  "size": {
+    "width": 224,
+    "height": 430
+  },
+  "type": "Texture Packer",
+  "subMetas": {
+    "weapon1.png": {
+      "ver": "1.0.4",
+      "uuid": "a7203782-32cb-4d05-add9-8b84c6a58720",
+      "rawTextureUuid": "89433c70-3951-4521-9a0f-f9b783906715",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 4,
+      "offsetY": -2,
+      "trimX": 1,
+      "trimY": 1,
+      "width": 222,
+      "height": 428,
+      "rawWidth": 500,
+      "rawHeight": 500,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "spriteType": "normal",
+      "subMetas": {}
+    }
+  }
+}

@@ -1,11 +1,13 @@
 import Basic from "./basic"
 
-export default class item extends Basic {
+export default class Item extends Basic {
     id: number;
     name: string;
     description: string;
 
     maxStack: number;
 
-    usage: string
+    usage: string;
+
+    texture: string;
 }

@@ -35,6 +35,19 @@ export default class GameComponent extends cc.Component {
     taskTabPrefabComponent: TaskTabPrefabComponent = null;
     gameActionPrefabComponent: GameActionPrefabComponent = null;
     backpackPrefabComponent: BackpackPrefabComponent = null
+
+    menuPadClosed(menu: string) {
+        this[`${menu}Node`] = null
+        this[`${menu}PrefabComponent`] = null
+    }
+    
+    openBag() {
+        this.backpackNode = cc.instantiate(this.backpackPrefab)
+        this.node.addChild(this.backpackNode)
+        this.backpackPrefabComponent = this.backpackNode.getComponent('backpackPrefab')
+        this.backpackPrefabComponent.gameComponent = this;
+    }
+
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {

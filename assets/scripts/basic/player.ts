@@ -7,6 +7,7 @@ export class Player extends Basic {
     private _skills: number[];
     private _currentHp: number;
     private _strength: number;
+    public items: object[];
 
     get hp() {
       return this._hp

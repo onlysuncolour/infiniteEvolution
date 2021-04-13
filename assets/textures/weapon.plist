@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>weapon1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{4,-2}</string>
+                <key>spriteSize</key>
+                <string>{222,428}</string>
+                <key>spriteSourceSize</key>
+                <string>{500,500}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{222,428}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>weapon.png</string>
+            <key>size</key>
+            <string>{224,430}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:881e2d18b8aaae0fc6501dbe6b5a8abe:6f9de065d4b28864d8c39590f03f2d62:f56027bfb88798a33d33ff61c031c331$</string>
+            <key>textureFileName</key>
+            <string>weapon.png</string>
+        </dict>
+    </dict>
+</plist>

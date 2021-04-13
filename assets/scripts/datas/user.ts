@@ -19,7 +19,30 @@ export const User = {
                 hp: 100,
                 attack: 10,
                 skills: [0,1,2],
-                defense: 10
+                defense: 10,
+                items: [
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1'},
+                ]
             })
         }
         this.Save = user;

@@ -29,7 +29,13 @@ export default class MenuPrefabComponent extends cc.Component {
     gameComponent: GameComponent;
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {}
+    onBagBtnClicked() {
+        this.gameComponent.openBag();
+    }
+
+    onLoad () {
+
+    }
 
     start () {
 
