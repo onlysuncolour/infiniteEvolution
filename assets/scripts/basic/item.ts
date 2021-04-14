@@ -4,6 +4,7 @@ export default class Item extends Basic {
     id: number;
     name: string;
     description: string;
+    type: string;
 
     maxStack: number;
 

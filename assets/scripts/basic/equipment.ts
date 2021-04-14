@@ -18,10 +18,10 @@ export interface IEquipmentDefenseIgnore {
 }
 
 export class Equipment extends Item {
-    type: EEquipmentType;
+    equipmentType: EEquipmentType;
 
     level: EEquipmentLevel;
-    
+
     damage: number; // 伤害值
     damageType: EDamageType; // 伤害类型
     status: string;

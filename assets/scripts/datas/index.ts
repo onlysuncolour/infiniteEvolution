@@ -1,8 +1,8 @@
-import Item from './item'
+import {ItemData} from './item'
 import {GlobalMap} from './map'
 import research from './research'
 import Timer from './timer'
-import {User} from './user'
+import {UserData} from './user'
 
 export const Data = {
     loadGame: function loadGame() {
@@ -11,7 +11,7 @@ export const Data = {
         ] = [
             cc.sys.localStorage.getItem('user')
         ]
-        User.setUser(user); 
+        UserData.setUser(user); 
     },
     newGame:function newGame(accountName: string) {
         cc.sys.localStorage.removeItem('user')
@@ -19,8 +19,10 @@ export const Data = {
         cc.sys.localStorage.removeItem('map')
         cc.sys.localStorage.removeItem('research')
         cc.sys.localStorage.removeItem('timer')
-        User.init(accountName)
+        UserData.init(accountName)
     },
 }
 
-export const loadPlayer = User.loadPlayer.bind(User);
+export const loadPlayer = UserData.loadPlayer.bind(UserData);
+export const loadItems = ItemData.loadItems.bind(ItemData);
+export const initItems = ItemData.initItems.bind(ItemData);

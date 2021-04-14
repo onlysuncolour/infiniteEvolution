@@ -1,16 +1,18 @@
 import { Player } from "../basic/player";
+import { initItems } from './index'
 interface ISaveUser {
     accountName: string;
     player: Player
 }
 
-export const User = {
+export const UserData = {
     Save: {},
     setUser: function (user) {
         this.Save = {
             accountName: user.accountName,
             player: Player.initPlayer(user.player)
         };
+        initItems(user.player.items)
     },
     init: function (accountName: string) {
         let user = {
@@ -21,31 +23,31 @@ export const User = {
                 skills: [0,1,2],
                 defense: 10,
                 items: [
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
-                    {name: 1, texture: 'weapon1'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
+                    {name: 1, texture: 'weapon1', type: 'equipment'},
                 ]
             })
         }
-        this.Save = user;
+        this.setUser(user)
     },
     loadPlayer() : Player {
         return this.Save.player;
