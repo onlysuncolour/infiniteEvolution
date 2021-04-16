@@ -9,6 +9,7 @@ import GameActionPrefabComponent from "./gameActionPrefab";
 import TaskTabPrefabComponent from "./taskTabPrefab";
 import BackpackPrefabComponent from "./backpackPrefab"
 import MenuPrefabComponent from "./menuPrefab";
+import UserTabPrefabComopnent from "./userTabPrefab";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -16,25 +17,26 @@ export default class GameComponent extends cc.Component {
 
     @property(cc.Prefab)
     menuPrefab: cc.Prefab = null;
-
     @property(cc.Prefab)
     taskTabPrefab: cc.Prefab = null;
-
     @property(cc.Prefab)
     gameActionPrefab: cc.Prefab = null;
-
     @property(cc.Prefab)
     backpackPrefab: cc.Prefab = null;
+    @property(cc.Prefab)
+    userTabPrefab: cc.Prefab = null;
 
     menuNode: cc.Node = null;
     taskTabNode: cc.Node = null;
     gameActionNode: cc.Node = null;
     backpackNode: cc.Node = null;
+    userTabNode: cc.Node = null;
 
     menuPrefabComponent: MenuPrefabComponent = null;
     taskTabPrefabComponent: TaskTabPrefabComponent = null;
     gameActionPrefabComponent: GameActionPrefabComponent = null;
     backpackPrefabComponent: BackpackPrefabComponent = null
+    userTabPrefabComponent: UserTabPrefabComopnent = null
 
     menuPadClosed(menu: string) {
         this[`${menu}Node`] = null
@@ -46,6 +48,13 @@ export default class GameComponent extends cc.Component {
         this.node.addChild(this.backpackNode)
         this.backpackPrefabComponent = this.backpackNode.getComponent('backpackPrefab')
         this.backpackPrefabComponent.gameComponent = this;
+    }
+
+    openUserTab() {
+        this.userTabNode = cc.instantiate(this.userTabPrefab)
+        this.node.addChild(this.userTabNode)
+        this.userTabPrefabComponent = this.userTabNode.getComponent('userTabPrefab')
+        this.userTabPrefabComponent.gameComponent = this;
     }
 
     // LIFE-CYCLE CALLBACKS:

@@ -294,6 +294,9 @@
     "backpackPrefab": {
       "__uuid__": "3f708226-8582-4573-861c-673724fa800a"
     },
+    "userTabPrefab": {
+      "__uuid__": "b732902a-d2a9-4af1-8b46-03dba821e072"
+    },
     "_id": "14uzE4/lJIK7BwKE2f/c+b"
   }
 ]

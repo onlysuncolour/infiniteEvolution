@@ -32,6 +32,10 @@ export default class MenuPrefabComponent extends cc.Component {
     onBagBtnClicked() {
         this.gameComponent.openBag();
     }
+    
+    onUserBtnClicked() {
+        this.gameComponent.openUserTab();
+    }
 
     onLoad () {
 
