@@ -7,8 +7,8 @@
 
 import GameComponent from "./game";
 import UserAttributeTabPrefabComopnent from "./userAttributeTabPrefab";
-import UserEquipmentTabPrefabComopnent from "./userEquipmentTabPrefabComopnent";
-import UserSkillTabPrefabComopnent from "./userSkillTabPrefabComopnent";
+import UserEquipmentTabPrefabComopnent from "./userEquipmentTabPrefab";
+import UserSkillTabPrefabComopnent from "./userSkillTabPrefab";
 
 const {ccclass, property} = cc._decorator;
 
