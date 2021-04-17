@@ -19,6 +19,9 @@ export default class ItemPrefabComponent extends cc.Component {
     @property(cc.SpriteAtlas)
     itemSpriteAtlas: cc.SpriteAtlas = null;
 
+    @property(cc.Graphics)
+    borderGraphics: cc.Graphics = null;
+
     item: item = null;
 
     backpackPrefabComponent: BackpackPrefabComponent;
@@ -26,6 +29,11 @@ export default class ItemPrefabComponent extends cc.Component {
 
     onLoad () {
         this.itemSprite.spriteFrame = this.itemSpriteAtlas.getSpriteFrame(this.item.texture)
+        this.borderGraphics.rect(-20, -20, 40, 40);
+        this.borderGraphics.stroke();
+        this.borderGraphics.lineWidth = 2;
+        this.borderGraphics.fillColor = cc.Color.GREEN;
+        this.borderGraphics.fill();
     }
 
     start () {

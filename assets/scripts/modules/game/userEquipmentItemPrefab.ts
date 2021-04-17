@@ -6,24 +6,16 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
 import UserEquipmentItemLinePrefabComponent from "./userEquipmentItemLinePrefab";
-import UserTabPrefabComopnent from "./userTabPrefab";
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class UserEquipmentTabPrefabComopnent extends cc.Component {
+export default class UserEquipmentItemPrefabComponent extends cc.Component {
 
-    @property(cc.Node)
-    contentNode: cc.Node = null;
+    @property(cc.Sprite)
+    item: cc.Sprite = null;
 
-    @property(cc.Prefab)
-    userEquipmentItemLinePrefab: cc.Prefab = null;
-
-    userEquipmentItemLineNodeList: cc.Node[] = [];
-    userEquipmentItemLinePrefabComponentList: UserEquipmentItemLinePrefabComponent[] = [];
-
-    userTabPrefabComponent: UserTabPrefabComopnent = null;
-
+    userEquipmentItemLinePrefabComponent: UserEquipmentItemLinePrefabComponent = null;
 
     // LIFE-CYCLE CALLBACKS:
 
