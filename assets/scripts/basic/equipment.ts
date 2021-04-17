@@ -19,6 +19,7 @@ export interface IEquipmentDefenseIgnore {
 
 export class Equipment extends Item {
     equipmentType: EEquipmentType;
+    isEquiped: Boolean;
 
     level: EEquipmentLevel;
 

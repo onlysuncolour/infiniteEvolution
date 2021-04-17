@@ -27,7 +27,20 @@ export default class UserEquipmentTabPrefabComopnent extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {}
+    onLoad () {
+        // let types:string[] = Item.getEquipmentTypes()
+        let types:string[] = ['weapon'];
+        types.forEach(type => {
+            let lineNode = cc.instantiate(this.userEquipmentItemLinePrefab)
+            let lineCompnent = lineNode.getComponent('userEquipmentItemLinePrefab')
+            this.userEquipmentItemLineNodeList.push(lineNode);
+            this.userEquipmentItemLinePrefabComponentList.push(lineCompnent)
+            lineCompnent.userEquipmentTabPrefabComponent = this;
+            lineCompnent.userEquipmentTabPrefabNode = this.node;
+            lineCompnent.equipmentType = type;
+            this.contentNode.addChild(lineNode)
+        })
+    }
 
     start () {
 

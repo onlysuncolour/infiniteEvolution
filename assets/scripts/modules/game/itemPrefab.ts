@@ -29,11 +29,11 @@ export default class ItemPrefabComponent extends cc.Component {
 
     onLoad () {
         this.itemSprite.spriteFrame = this.itemSpriteAtlas.getSpriteFrame(this.item.texture)
-        this.borderGraphics.rect(-20, -20, 40, 40);
-        this.borderGraphics.stroke();
-        this.borderGraphics.lineWidth = 2;
-        this.borderGraphics.fillColor = cc.Color.GREEN;
-        this.borderGraphics.fill();
+        // this.borderGraphics.rect(-20, -20, 40, 40);
+        // this.borderGraphics.stroke();
+        // this.borderGraphics.lineWidth = 2;
+        // this.borderGraphics.fillColor = cc.Color.GREEN;
+        // this.borderGraphics.fill();
     }
 
     start () {
