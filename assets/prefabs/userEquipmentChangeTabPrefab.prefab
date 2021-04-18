@@ -1031,14 +1031,14 @@
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 1
+      "y": 0.5
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
         0,
-        275,
+        0,
         0,
         0,
         0,
@@ -1175,7 +1175,7 @@
       "height": 200
     },
     "_resize": 0,
-    "_N$layoutType": 1,
+    "_N$layoutType": 3,
     "_N$cellSize": {
       "__type__": "cc.Size",
       "width": 40,
@@ -1184,10 +1184,10 @@
     "_N$startAxis": 0,
     "_N$paddingLeft": 20,
     "_N$paddingRight": 20,
-    "_N$paddingTop": 0,
-    "_N$paddingBottom": 0,
+    "_N$paddingTop": 10,
+    "_N$paddingBottom": 10,
     "_N$spacingX": 15,
-    "_N$spacingY": 0,
+    "_N$spacingY": 15,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0,
     "_N$affectedByScale": false,

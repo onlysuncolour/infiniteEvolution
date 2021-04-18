@@ -48,7 +48,7 @@ export default class UserEquipmentChangeTabPrefabComponent extends cc.Component 
             this.equipmentSelected.splice(this.equipmentSelected.indexOf(equipment), 1)
             component.itemUnselectd();
         } else {
-            if (this.selectNumMax >= this.equipmentSelected.length) {
+            if (this.selectNumMax <= this.equipmentSelected.length) {
                 return;
             } else {
                 this.equipmentSelected.push(equipment);
@@ -90,7 +90,6 @@ export default class UserEquipmentChangeTabPrefabComponent extends cc.Component 
             })
         }
         this.defaultEquipmentSelected = [...this.equipmentSelected];
-        console.log(123123)
     }
 
     start () {

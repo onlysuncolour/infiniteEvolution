@@ -29,7 +29,7 @@ export default class EquipmentItemPrefabComponent extends cc.Component {
 
     onItemClicked() {
         if (this.parentComponent.itemClicked) {
-            this.parentComponent.itemClicked(this.equipment)
+            this.parentComponent.itemClicked(this.equipment, this)
         }
     }
 
@@ -43,8 +43,9 @@ export default class EquipmentItemPrefabComponent extends cc.Component {
             this.itemSelected();
         }
     }
-
+    
     fillItemLevel() {
+        this.itemGraphics.rect(-20, -20, 40, 40);
         this.itemGraphics.fillColor = cc.Color.GREEN;
         this.itemGraphics.fill();
     }
@@ -56,8 +57,8 @@ export default class EquipmentItemPrefabComponent extends cc.Component {
     }
 
     itemUnselectd() {
-        this.itemGraphics.strokeColor = cc.Color.TRANSPARENT;
-        this.itemGraphics.stroke();
+        this.itemGraphics.clear();
+        this.fillItemLevel();
     }
 
     start () {
